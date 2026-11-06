@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shutter Story｜出張撮影とイベント</title>
+<meta name="description" content="千葉県流山市を拠点にした出張撮影とイベント企画。家族写真・七五三・マタニティ・撮影会など、大切な一日を自然な笑顔で残します。（要確認）">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ケイエストライ｜出張撮影とイベント">
+<meta property="og:description" content="出張撮影とイベントで、あなたの「素敵」を形に。（要確認）">
+<meta property="og:image" content="img/hero-main.jpg"><!-- 要確認：公開時は https:// から始まる絶対URLにする -->
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Noto+Serif+JP:wght@400;600&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --deep:#23251a; --olive:#33361f; --khaki:#7f7c4f; --khaki-l:#b9b38b; --gold:#cdb27a; --bone:#efe9da; --mute:#a29f86;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--deep);color:var(--bone);font-family:"Noto Sans JP",sans-serif;font-weight:300;line-height:1.95;overflow-x:hidden}
+.pf{font-family:"Playfair Display",serif}
+.mj{font-family:"Noto Serif JP",serif}
+a{color:inherit;text-decoration:none}
+.ph{position:relative;overflow:hidden;background:var(--img,none) center/cover no-repeat,var(--g)}
+.ph::after{content:attr(data-label);position:absolute;left:16px;bottom:12px;font-size:10px;letter-spacing:.3em;color:rgba(255,255,255,.7)}
+.g1{--g:radial-gradient(circle at 30% 30%,rgba(255,226,190,.7),transparent 40%),radial-gradient(circle at 75% 70%,#4a4c2c,transparent 60%),linear-gradient(135deg,#9c946a,#2d2f1c)}
+.g2{--g:radial-gradient(circle at 65% 35%,rgba(255,236,210,.75),transparent 38%),linear-gradient(160deg,#b39b78,#3a3c24)}
+.g3{--g:radial-gradient(circle at 45% 45%,rgba(255,214,160,.65),transparent 42%),linear-gradient(200deg,#7f7c4f,#1f2116)}
+.g4{--g:radial-gradient(circle at 70% 25%,rgba(255,245,230,.7),transparent 35%),linear-gradient(120deg,#c5ad86,#4b4d2e)}
+
+/* shutter intro */
+.shutter{position:fixed;inset:0;z-index:200;pointer-events:none}
+.shutter i{position:absolute;left:0;right:0;height:50.5%;background:#0f100b;transition:transform 1.1s cubic-bezier(.86,0,.07,1)}
+.shutter i:nth-of-type(1){top:0}.shutter i:nth-of-type(2){bottom:0}
+.open .shutter i:nth-of-type(1){transform:translateY(-100%)}
+.open .shutter i:nth-of-type(2){transform:translateY(100%)}
+.shutter .cnt{position:absolute;inset:0;display:grid;place-items:center;font-family:"Playfair Display";font-size:14px;letter-spacing:.6em;color:var(--gold);z-index:2;transition:opacity .4s}
+.open .shutter .cnt{opacity:0}
+#flash{position:fixed;inset:0;background:#fff;opacity:0;z-index:150;pointer-events:none}
+#flash.on{animation:flash .5s ease-out}
+@keyframes flash{0%{opacity:.85}100%{opacity:0}}
+
+/* header */
+header{position:fixed;inset:0 0 auto;z-index:60;display:flex;justify-content:space-between;align-items:center;padding:22px clamp(16px,4vw,52px);mix-blend-mode:difference}
+.logo{font-size:22px;letter-spacing:.08em}
+header nav{display:flex;gap:30px;font-size:12px;letter-spacing:.25em}
+@media(max-width:760px){header nav{display:none}}
+
+/* hero slideshow */
+.hero{position:relative;height:100svh;min-height:600px;overflow:hidden}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.6s}
+.slide.on{opacity:1}
+.slide .ph{position:absolute;inset:-4%;animation:kb 9s linear forwards paused}
+.slide.on .ph{animation-play-state:running}
+@keyframes kb{from{transform:scale(1.12)}to{transform:scale(1)}}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(35,37,26,.2),rgba(35,37,26,.75))}
+/* viewfinder */
+.vf{position:absolute;inset:clamp(16px,4vw,44px);z-index:3;pointer-events:none}
+.vf b{position:absolute;width:34px;height:34px;border:solid var(--bone);opacity:.8}
+.vf b:nth-child(1){top:0;left:0;border-width:1px 0 0 1px}.vf b:nth-child(2){top:0;right:0;border-width:1px 1px 0 0}
+.vf b:nth-child(3){bottom:0;left:0;border-width:0 0 1px 1px}.vf b:nth-child(4){bottom:0;right:0;border-width:0 1px 1px 0}
+.vf .rec{position:absolute;top:60px;right:16px;font-size:11px;letter-spacing:.3em;display:flex;align-items:center;gap:8px}
+.vf .rec::before{content:"";width:8px;height:8px;border-radius:50%;background:#d0614a;animation:blink 1.2s infinite}
+@keyframes blink{50%{opacity:0}}
+.vf .meta{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:.3em;color:var(--khaki-l);white-space:nowrap}
+.vf .focus{position:absolute;left:50%;top:50%;width:70px;height:70px;transform:translate(-50%,-50%);border:1px solid rgba(239,233,218,.5);animation:af 3s ease-in-out infinite}
+@keyframes af{0%,100%{transform:translate(-50%,-50%) scale(1)}45%{transform:translate(-50%,-50%) scale(.75);border-color:var(--gold)}}
+.hero-txt{position:absolute;z-index:4;left:clamp(24px,7vw,120px);bottom:clamp(90px,14vh,150px);max-width:900px}
+.hero-txt .pf{font-style:italic;color:var(--gold);font-size:clamp(16px,1.8vw,22px);letter-spacing:.1em}
+.hero-txt h1{font-size:clamp(25px,5.6vw,80px);line-height:1.45;font-weight:600;margin-top:10px}
+.mask{display:block;overflow:hidden;white-space:nowrap}
+.mask>span{display:block;transform:translateY(105%);transition:transform 1.3s cubic-bezier(.19,1,.22,1)}
+.open .hero-txt .mask>span{transform:none}
+.open .hero-txt .mask:nth-of-type(2)>span{transition-delay:.15s}
+.hero-txt .lead{margin-top:20px;color:var(--khaki-l);max-width:32em;opacity:0;transition:opacity 1.2s 1.4s}
+.open .hero-txt .lead{opacity:1}
+
+/* sections */
+section{position:relative;padding:clamp(90px,13vw,180px) clamp(16px,6vw,96px)}
+.lab{font-family:"Playfair Display";font-style:italic;color:var(--gold);font-size:18px;display:flex;align-items:center;gap:14px}
+.lab::before{content:"";width:40px;height:1px;background:var(--gold)}
+.rv{opacity:0;transform:translateY(50px);transition:opacity 1.2s,transform 1.2s cubic-bezier(.19,1,.22,1)}
+.rv.in{opacity:1;transform:none}
+.d1{transition-delay:.15s}.d2{transition-delay:.3s}
+
+/* statement */
+.statement{max-width:1200px;margin:0 auto}
+.statement h2{font-size:clamp(26px,4.2vw,58px);line-height:1.7;font-weight:400;margin-top:30px}
+.statement h2 .w{color:rgba(239,233,218,.15);transition:color .5s}
+.statement h2 .w.lit{color:var(--bone)}
+.statement h2 .w.g.lit{color:var(--gold)}
+
+/* parallax duo */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:6vw;max-width:1200px;margin:0 auto;align-items:end}
+.duo .ph{border-radius:2px}
+.duo .a{aspect-ratio:3/4}.duo .b{aspect-ratio:4/5;margin-bottom:-120px}
+@media(max-width:760px){.duo{grid-template-columns:1fr}.duo .b{margin-bottom:0}}
+
+/* sticky services */
+.svc-wrap{max-width:1100px;margin:0 auto}
+.svc-wrap h2{font-size:clamp(28px,4vw,52px);font-weight:600;margin:14px 0 60px}
+.svc{position:sticky;top:12vh;display:grid;grid-template-columns:1fr 1fr;min-height:66vh;margin-bottom:8vh;background:var(--olive);border:1px solid rgba(185,179,139,.2);overflow:hidden;box-shadow:0 -20px 60px -20px rgba(0,0,0,.6)}
+.svc:nth-child(4){top:15vh;background:#3b3e25}.svc:nth-child(5){top:18vh;background:#43462b}
+.svc .ph{min-height:300px}
+.svc .in-txt{padding:clamp(28px,5vw,64px);display:flex;flex-direction:column;justify-content:center}
+.svc .no{font-family:"Playfair Display";font-size:80px;line-height:1;color:var(--khaki)}
+.svc h3{font-size:clamp(24px,2.8vw,34px);font-weight:600;margin:12px 0 18px}
+.svc p{color:var(--khaki-l)}
+.svc .tags{margin-top:24px;font-size:12px;letter-spacing:.2em;color:var(--gold)}
+@media(max-width:760px){.svc{grid-template-columns:1fr;position:relative;top:auto!important}}
+
+/* film strip */
+.strip{padding-inline:0;background:#0f100b;overflow:hidden}
+.film{display:flex;gap:6px;padding:26px 0;width:max-content;animation:film 50s linear infinite;background:repeating-linear-gradient(90deg,transparent 0 14px,var(--deep) 14px 26px) top/100% 12px no-repeat,repeating-linear-gradient(90deg,transparent 0 14px,var(--deep) 14px 26px) bottom/100% 12px no-repeat}
+.film .ph{width:clamp(200px,24vw,320px);aspect-ratio:3/2;filter:sepia(.25) saturate(.9);transition:filter .5s}
+.film .ph:hover{filter:none}
+@keyframes film{to{transform:translateX(-50%)}}
+
+/* numbers */
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1000px;margin:0 auto;text-align:center}
+.nums .n{font-family:"Playfair Display";font-size:clamp(48px,7vw,90px);color:var(--gold);line-height:1}
+.nums small{display:block;margin-top:10px;letter-spacing:.2em;color:var(--khaki-l);font-size:12px}
+@media(max-width:600px){.nums{grid-template-columns:1fr}}
+
+/* contact */
+.contact{text-align:center;overflow:hidden}
+.contact .big{font-family:"Playfair Display";font-style:italic;font-size:clamp(54px,12vw,190px);line-height:1;color:var(--khaki);white-space:nowrap}
+.contact h2{font-size:clamp(22px,3vw,36px);font-weight:400;margin:20px 0 40px}
+.cbtn{display:inline-flex;align-items:center;justify-content:center;width:180px;height:180px;border-radius:50%;border:1px solid var(--gold);color:var(--gold);letter-spacing:.2em;font-size:13px;position:relative;overflow:hidden;transition:color .4s}
+.cbtn::before{content:"";position:absolute;inset:0;background:var(--gold);transform:scale(0);border-radius:50%;transition:transform .5s cubic-bezier(.19,1,.22,1);z-index:-1}
+.cbtn:hover{color:var(--deep)}.cbtn:hover::before{transform:scale(1)}
+.cbtn{isolation:isolate}
+.sub-links{margin-top:30px;font-size:13px;letter-spacing:.15em;color:var(--khaki-l);display:flex;gap:28px;justify-content:center}
+.sub-links a{border-bottom:1px solid var(--khaki)}
+footer{text-align:center;padding:30px;font-size:11px;letter-spacing:.3em;color:var(--mute);border-top:1px solid rgba(185,179,139,.15)}
+
+/* cursor */
+#cur{position:fixed;width:46px;height:46px;border:1px solid var(--gold);z-index:120;pointer-events:none;transform:translate(-50%,-50%);transition:width .25s,height .25s;mix-blend-mode:difference;display:none}
+#cur::before,#cur::after{content:"";position:absolute;background:var(--gold);left:50%;top:50%}
+#cur::before{width:8px;height:1px;transform:translate(-50%,-50%)}#cur::after{width:1px;height:8px;transform:translate(-50%,-50%)}
+@media(hover:hover) and (pointer:fine){#cur{display:block}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.mask>span{transform:none}.shutter{display:none}}
+.has-img::after{display:none}
+.wk-note{text-align:center;font-size:13px;margin:-20px auto 26px;padding:10px 16px;border:1px dashed currentColor;border-radius:8px;max-width:560px;opacity:.75}
+.wk-tabs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:36px}
+.wk-tabs button{font:inherit;font-size:14px;cursor:pointer;padding:8px 22px;border-radius:999px;background:transparent;color:inherit;border:1px solid var(--wk-line);transition:background .3s,color .3s}
+.wk-tabs button.on,.wk-tabs button:hover{background:var(--wk-acc);color:var(--wk-on);border-color:var(--wk-acc)}
+.wk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1150px;margin:0 auto}
+.wk{background:var(--wk-bg);border-radius:var(--wk-r);overflow:hidden;position:relative;transition:transform .4s,opacity .4s}
+.wk:hover{transform:translateY(-6px)}
+.wk.wk-hide{display:none}
+.wk::before{content:"要確認";position:absolute;top:12px;right:12px;z-index:2;font-size:11px;font-weight:700;letter-spacing:.1em;background:#fff;color:#a0523a;padding:2px 10px;border-radius:999px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.wk .ph{aspect-ratio:4/3}
+.wk-b{padding:20px 22px 24px}
+.wk-tag{display:inline-block;font-size:11px;letter-spacing:.15em;padding:1px 10px;border-radius:999px;background:var(--wk-acc);color:var(--wk-on);margin-right:8px}
+.wk-date{font-size:12px;opacity:.7;letter-spacing:.1em}
+.wk h4{font-size:17px;margin:8px 0 6px;line-height:1.5}
+.wk p{font-size:13px;opacity:.75;line-height:1.7}
+@media(max-width:860px){.wk-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.wk-grid{grid-template-columns:1fr}}
+.works{--wk-bg:var(--olive);--wk-acc:var(--gold);--wk-on:var(--deep);--wk-line:rgba(205,178,122,.5);--wk-r:2px}.works .wk{border:1px solid rgba(185,179,139,.2)}
+
+.chk{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.08em;background:#fff3ee;color:#a0523a;border:1px solid #e8b9a6;padding:0 8px;border-radius:999px;margin-left:6px;vertical-align:middle;line-height:1.8;font-style:normal}
+.xs-note{text-align:center;font-size:13px;margin:-20px auto 30px;padding:10px 16px;border:1px dashed currentColor;border-radius:8px;max-width:600px;opacity:.75}
+.xs-link{display:inline-block;margin-top:18px;border-bottom:1px solid currentColor;color:var(--x-acc);font-size:14px}
+.pf-wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(30px,5vw,70px);max-width:1050px;margin:0 auto;align-items:center}
+.pf-ph{aspect-ratio:1;border-radius:var(--x-pfr)}
+.pf-role{font-size:13px;letter-spacing:.12em;color:var(--x-acc)}
+.pf-txt h3{font-size:clamp(24px,3vw,34px);margin:6px 0 16px}
+.pf-txt p{margin-bottom:12px}
+.pf-tags{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.pf-tags li{font-size:12px;padding:3px 14px;border-radius:999px;border:1px solid var(--x-line)}
+@media(max-width:760px){.pf-wrap{grid-template-columns:1fr}.pf-ph{max-width:320px;margin:0 auto;width:100%}}
+.pm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1100px;margin:0 auto}
+.pm{background:var(--x-bg);border-radius:var(--x-r);padding:34px 28px}
+.pm-n{font-size:40px;line-height:1;color:var(--x-acc);opacity:.7}
+.pm h4{font-size:19px;margin:12px 0 10px}
+.pm p{font-size:14px;opacity:.85}
+.fx-row{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;max-width:1100px;margin:34px auto 0;align-items:center}
+.fx{background:var(--x-bg);border-radius:var(--x-r);padding:14px 26px;text-align:center;min-width:170px}
+.fx small{display:block;font-size:11px;letter-spacing:.15em;opacity:.7}
+.fx b{font-size:18px;color:var(--x-acc)}
+@media(max-width:760px){.pm-grid{grid-template-columns:1fr}}
+.pl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1100px;margin:0 auto;align-items:stretch}
+.pl{background:var(--x-bg);border-radius:var(--x-r);padding:38px 28px;text-align:center;position:relative;border:1px solid var(--x-line);transition:transform .4s}
+.pl:hover{transform:translateY(-6px)}
+.pl.pop{border:2px solid var(--x-acc);transform:scale(1.03)}
+.pl.pop:hover{transform:scale(1.03) translateY(-6px)}
+.pl-pop{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--x-acc);color:var(--x-on);font-size:12px;font-weight:700;padding:3px 18px;border-radius:999px}
+.pl-en{font-size:12px;letter-spacing:.25em;color:var(--x-acc)}
+.pl h4{font-size:20px;margin:6px 0 14px}
+.pl-pr{font-size:30px;font-weight:700;color:var(--x-acc)}
+.pl-sp{font-size:13px;opacity:.75;margin:4px 0 16px}
+.pl ul{list-style:none;font-size:14px;border-top:1px dashed var(--x-line);padding-top:14px}
+.pl li{padding:3px 0}
+.pl li::before{content:"✓ ";color:var(--x-acc)}
+.monitor{max-width:1100px;margin:30px auto 0;padding:18px 24px;border-radius:var(--x-r);background:var(--x-acc);color:var(--x-on);font-size:14px;text-align:center}
+.pl-foot{text-align:center;font-size:13px;opacity:.8;margin-top:18px}
+@media(max-width:860px){.pl-grid{grid-template-columns:1fr}.pl.pop{transform:none}}
+.fq-list{max-width:820px;margin:0 auto}
+.fq{background:var(--x-bg);border-radius:var(--x-r);margin-bottom:12px;overflow:hidden;border:1px solid var(--x-line)}
+.fq summary{list-style:none;cursor:pointer;padding:20px 52px 20px 22px;position:relative;font-size:16px;display:flex;gap:14px;align-items:baseline}
+.fq summary::-webkit-details-marker{display:none}
+.fq summary::after{content:"+";position:absolute;right:22px;top:50%;transform:translateY(-50%);font-size:24px;color:var(--x-acc);transition:transform .3s}
+.fq[open] summary::after{transform:translateY(-50%) rotate(45deg)}
+.fq summary span,.fq-a span{color:var(--x-acc);font-weight:700;font-size:18px}
+.fq-a{display:flex;gap:14px;padding:0 22px 22px;font-size:14px;animation:fqin .45s ease}
+.fq-a p{opacity:.9}
+@keyframes fqin{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+.xs{--x-bg:var(--olive);--x-acc:var(--gold);--x-on:var(--deep);--x-line:rgba(205,178,122,.35);--x-r:2px;--x-pfr:2px}.pm-n{font-family:'Playfair Display'}.xs .chk{background:rgba(205,178,122,.15);color:var(--gold);border-color:rgba(205,178,122,.5)}
+html{overflow-x:clip}
+@media(max-width:760px){.vf .focus{display:none}.hero-txt .pf{font-size:12px;letter-spacing:.04em}.hero-txt{right:24px}}
+
+.logo img{height:20px;width:auto;display:block}
+footer{display:flex;flex-direction:column;align-items:center;gap:12px}.flogo{height:18px;width:auto;opacity:.85}
+.svc{min-height:56vh}
+.midwrap{padding:clamp(40px,6vw,70px) clamp(16px,6vw,96px)}
+.midcta{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;border-top:1px solid rgba(205,178,122,.35);border-bottom:1px solid rgba(205,178,122,.35);padding:28px 0}
+.midcta p{font-size:clamp(16px,2vw,22px)}
+.midcta a{color:var(--gold);letter-spacing:.25em;font-size:13px;border:1px solid var(--gold);padding:12px 28px;transition:background .4s,color .4s}
+.midcta a:hover{background:var(--gold);color:var(--deep)}
+.cflow{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:1100px;margin:0 auto;counter-reset:none}
+.cflow li{border-top:1px solid var(--gold);padding-top:20px}
+.cflow>li>span{font-size:34px;color:var(--khaki)}
+.cflow h4{font-size:19px;margin:6px 0 8px}
+.cflow p{font-size:14px;color:var(--khaki-l)}
+@media(max-width:860px){.cflow{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.cflow{grid-template-columns:1fr}.midcta{justify-content:center;text-align:center}}
+</style>
+</head>
+<body>
+<div class="shutter"><i></i><i></i><div class="cnt">READY</div></div>
+<div id="flash"></div>
+<div id="cur"></div>
+
+<header>
+  <a class="logo" href="#"><img src="img/logo-cream.png" alt="ケイエストライ"></a>
+  <nav class="pf"><a href="#story">STORY</a><a href="#service">SERVICE</a><a href="#works">WORKS</a><a href="#contact">CONTACT</a></nav>
+</header>
+
+<section class="hero" style="padding:0">
+  <div class="slide on"><div class="ph g1" data-img="hero-slide-1"></div></div>
+  <div class="slide"><div class="ph g2" data-img="hero-slide-2"></div></div>
+  <div class="slide"><div class="ph g3" data-img="hero-slide-3"></div></div>
+  <div class="slide"><div class="ph g4" data-img="hero-slide-4"></div></div>
+  <div class="vf"><b></b><b></b><b></b><b></b><span class="rec pf">REC</span><span class="focus"></span><span class="meta pf" id="meta">F2.0 · 1/250 · ISO 200 · No.001</span></div>
+  <div class="hero-txt">
+    <p class="pf">Photo &amp; Event — capture the wonderful time</p>
+    <h1 class="mj"><span class="mask"><span>シャッターの向こうに、</span></span><span class="mask"><span>あなたの物語がある。</span></span></h1>
+    <p class="lead">出張撮影とイベントで、人生の「素敵」を一枚ずつ。大切な人と過ごす時間を、映画のワンシーンのように残します。</p>
+  </div>
+</section>
+
+<section id="story">
+  <div class="statement">
+    <p class="lab rv">Our Story</p>
+    <h2 class="mj" id="words">写真は、思い出を残すためだけのものじゃない。撮っている時間そのものが、笑い合える<span class="g">素敵なイベント</span>になる。だから私たちは、撮影の一日を丸ごとデザインします。</h2>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="duo">
+    <div class="ph g2 a" data-img="gallery-03" data-label="PHOTO" data-speed="-0.06"></div>
+    <div class="ph g3 b" data-img="gallery-07" data-label="PHOTO" data-speed="0.08"></div>
+  </div>
+</section>
+
+<section id="service">
+  <div class="svc-wrap">
+    <p class="lab rv">Service</p>
+    <h2 class="mj rv d1">一瞬を残す。場をつくる。</h2>
+    <div class="svc"><div class="ph g4" data-img="service-photo" data-label="LOCATION PHOTO"></div><div class="in-txt"><span class="no">01</span><h3 class="mj">出張撮影</h3><p>ご自宅、公園、思い出の場所へ。家族の記念日、七五三、マタニティ、前撮り、お店や住まいの撮影まで、ご希望の場所で自然体の表情を残します。</p><span class="tags pf">FAMILY / KIDS / MATERNITY / WEDDING / SHOP</span></div></div>
+    <div class="svc"><div class="ph g1" data-img="service-event" data-label="EVENT"></div><div class="in-txt"><span class="no">02</span><h3 class="mj">イベント企画・運営</h3><p>撮影会、マルシェ、ワークショップ、パーティー。企画から集客、当日の運営まで、人が集まり笑顔が生まれる場をつくります。</p><span class="tags pf">PLANNING / PRODUCE / MANAGEMENT</span></div></div>
+    <div class="svc"><div class="ph g2" data-img="service-record" data-label="RECORD"></div><div class="in-txt"><span class="no">03</span><h3 class="mj">イベント記録撮影</h3><p>開催の様子をドキュメンタリーのように記録。参加者へのお届けやSNSでの告知にも使える写真をご用意します。</p><span class="tags pf">DOCUMENT / SNS / GROUP PHOTO</span></div></div>
+  </div>
+</section>
+
+<section class="strip">
+  <div class="film">
+    <div class="ph g1" data-img="gallery-01"></div><div class="ph g2" data-img="gallery-02"></div><div class="ph g3" data-img="gallery-03"></div><div class="ph g4" data-img="gallery-04"></div><div class="ph g2" data-img="gallery-05"></div><div class="ph g1" data-img="gallery-06"></div>
+    <div class="ph g1" data-img="gallery-07"></div><div class="ph g2" data-img="gallery-08"></div><div class="ph g3" data-img="gallery-01"></div><div class="ph g4" data-img="gallery-02"></div><div class="ph g2" data-img="gallery-03"></div><div class="ph g1" data-img="gallery-04"></div>
+  </div>
+</section>
+
+<section class="works" id="works">
+  <div style="max-width:1150px;margin:0 auto 50px"><p class="lab rv">Works</p><h2 class="mj rv d1" style="font-size:clamp(28px,4vw,52px);font-weight:600;margin-top:14px">撮影・イベント実績</h2></div>
+  <p class="wk-note">※ この欄は<b>要確認</b>です。実際の撮影・イベント実績が決まったら写真と内容を差し替えます。</p>
+  <div class="wk-tabs"><button class="on" data-f="all">すべて</button><button data-f="photo">撮影実績</button><button data-f="event">イベント実績</button></div>
+  <div class="wk-grid">
+    <article class="wk rv" data-cat="photo"><div class="ph g2" data-img="works-01" data-label="WORKS PHOTO"></div><div class="wk-b"><span class="wk-tag">撮影</span><span class="wk-date">20XX.XX</span><h4 class="mj">【要確認】家族写真の実績タイトル</h4><p>場所・人数・内容などを1〜2行で（要確認）</p></div></article>
+    <article class="wk rv" data-cat="event"><div class="ph g3" data-img="works-02" data-label="WORKS PHOTO"></div><div class="wk-b"><span class="wk-tag">イベント</span><span class="wk-date">20XX.XX</span><h4 class="mj">【要確認】マルシェの実績タイトル</h4><p>場所・人数・内容などを1〜2行で（要確認）</p></div></article>
+    <article class="wk rv" data-cat="photo"><div class="ph g4" data-img="works-03" data-label="WORKS PHOTO"></div><div class="wk-b"><span class="wk-tag">撮影</span><span class="wk-date">20XX.XX</span><h4 class="mj">【要確認】七五三の実績タイトル</h4><p>場所・人数・内容などを1〜2行で（要確認）</p></div></article>
+    <article class="wk rv" data-cat="event"><div class="ph g1" data-img="works-04" data-label="WORKS PHOTO"></div><div class="wk-b"><span class="wk-tag">イベント</span><span class="wk-date">20XX.XX</span><h4 class="mj">【要確認】撮影会の実績タイトル</h4><p>場所・人数・内容などを1〜2行で（要確認）</p></div></article>
+    <article class="wk rv" data-cat="photo"><div class="ph g2" data-img="works-05" data-label="WORKS PHOTO"></div><div class="wk-b"><span class="wk-tag">撮影</span><span class="wk-date">20XX.XX</span><h4 class="mj">【要確認】マタニティの実績タイトル</h4><p>場所・人数・内容などを1〜2行で（要確認）</p></div></article>
+    <article class="wk rv" data-cat="event"><div class="ph g3" data-img="works-06" data-label="WORKS PHOTO"></div><div class="wk-b"><span class="wk-tag">イベント</span><span class="wk-date">20XX.XX</span><h4 class="mj">【要確認】ワークショップの実績タイトル</h4><p>場所・人数・内容などを1〜2行で（要確認）</p></div></article>
+  </div>
+</section>
+
+<section class="midwrap"><div class="midcta rv"><p class="mj">撮りたいシーンが浮かんだら、まずは気軽にご相談を。</p><a href="#contact" class="pf">CONTACT →</a></div></section>
+
+<section class="xs xs-promise" id="promise">
+  <div style="max-width:1100px;margin:0 auto 50px"><p class="lab rv">Promise</p><h2 class="mj rv d1" style="font-size:clamp(28px,4vw,52px);font-weight:600;margin-top:14px">安心してお任せいただける理由</h2></div>
+  <div class="pm-grid"><div class="pm rv d0"><span class="pm-n">01</span><h4 class="mj">カメラが苦手でも大丈夫</h4><p>おしゃべりしながら撮るので、人見知りのお子さまや撮られ慣れていない方も自然な表情に。</p></div><div class="pm rv d1"><span class="pm-n">02</span><h4 class="mj">写真が早く届く</h4><p>撮影後◯日以内にデータでお届け。思い出が新しいうちに見返せます。</p></div><div class="pm rv d2"><span class="pm-n">03</span><h4 class="mj">撮影もイベントもまとめて相談</h4><p>「撮影会を開きたい」「イベントの記録もほしい」を、ひとりの窓口でまとめて叶えます。</p></div></div>
+  <div class="fx-row rv"><div class="fx"><small>データ枚数</small><b>◯◯枚以上</b></div><div class="fx"><small>お届け</small><b>撮影後◯日以内</b></div><div class="fx"><small>出張エリア</small><b>流山・柏・松戸ほか</b></div><div class="fx"><small>当日の時間</small><b>30分〜</b></div><span class="chk fx-chk">数字はすべて要確認</span></div>
+</section>
+
+<section class="xs xs-profile" id="profile">
+  <div style="max-width:1100px;margin:0 auto 50px"><p class="lab rv">Profile</p><h2 class="mj rv d1" style="font-size:clamp(28px,4vw,52px);font-weight:600;margin-top:14px">撮影するのは、こんな人です</h2></div>
+  <div class="pf-wrap">
+    <div class="ph g2 pf-ph rv" data-img="profile" data-label="ご本人の写真（要確認）"></div>
+    <div class="pf-txt rv d1">
+      <p class="pf-role">カメラマン ／ イベントプランナー <span class="chk">要確認</span></p>
+      <h3 class="mj">【要確認】お名前</h3>
+      <p>本業はユニットバスの施工職人。「工事の時間も、楽しいイベントにしたい」という想いから、写真撮影とイベントづくりを始めました。職人として大切にしてきた<b>見えないところまで丁寧に</b>という姿勢は、撮影でも同じです。<span class="chk">要確認</span></p>
+      <p>子どもと話すのが大好きで、気づいたらみんな笑っている……そんな撮影を目指しています。<span class="chk">要確認</span></p>
+      <ul class="pf-tags"><li>千葉県流山市を拠点に活動</li><li>職人ならではの丁寧さ</li><li>子ども・ファミリー撮影が得意</li></ul>
+      <a class="xs-link" href="https://www.instagram.com/kekeruru0000">Instagramで普段の様子を見る →</a>
+    </div>
+  </div>
+</section>
+
+<section class="xs xs-plan" id="plan">
+  <div style="max-width:1100px;margin:0 auto 50px"><p class="lab rv">Plan</p><h2 class="mj rv d1" style="font-size:clamp(28px,4vw,52px);font-weight:600;margin-top:14px">料金プラン</h2></div>
+  <p class="xs-note">※ 料金・内容はすべて<b>要確認</b>です（仮の表記）。</p>
+  <div class="pl-grid"><div class="pl rv d0"><span class="pl-en">LIGHT</span><h4 class="mj">ライトプラン</h4><p class="pl-pr">¥◯◯,◯◯◯</p><p class="pl-sp">撮影30分 ／ データ◯◯枚</p><ul><li>ご家族・カップル</li><li>近場の公園やご自宅で</li></ul></div><div class="pl rv d1 pop"><span class="pl-pop">人気</span><span class="pl-en">STANDARD</span><h4 class="mj">スタンダードプラン</h4><p class="pl-pr">¥◯◯,◯◯◯</p><p class="pl-sp">撮影60分 ／ データ◯◯枚</p><ul><li>七五三・記念日に</li><li>衣装チェンジ1回OK</li></ul></div><div class="pl rv d2"><span class="pl-en">EVENT</span><h4 class="mj">イベントプラン</h4><p class="pl-pr">要相談</p><p class="pl-sp">企画・運営・記録撮影</p><ul><li>撮影会・マルシェなど</li><li>記録撮影のみもOK</li></ul></div></div>
+  <div class="monitor rv"><b>【要確認】モニター募集中</b>　はじめての方限定で、モニター価格で撮影します。写真をInstagramやこのページで紹介させていただける方が対象です。</div>
+  <p class="pl-foot rv">出張費（◯km以内無料）・土日祝の料金・衣装やヘアメイクの手配についても、お気軽にご相談ください。<span class="chk">要確認</span></p>
+</section>
+
+<section class="midwrap"><div class="midcta rv"><p class="mj">プランに迷ったら、相談だけでも大丈夫です。</p><a href="#contact" class="pf">CONTACT →</a></div></section>
+
+<section id="flow" class="xs">
+  <div style="max-width:1100px;margin:0 auto 50px"><p class="lab rv">Flow</p><h2 class="mj rv d1" style="font-size:clamp(28px,4vw,52px);font-weight:600;margin-top:14px">ご依頼の流れ</h2></div>
+  <ol class="cflow">
+    <li class="rv"><span class="pf">01</span><h4 class="mj">ご相談</h4><p>InstagramのDMかメールで、日時や撮りたいイメージをお知らせください。</p></li>
+    <li class="rv d1"><span class="pf">02</span><h4 class="mj">打ち合わせ</h4><p>場所・時間・衣装などを一緒に決めます。</p></li>
+    <li class="rv d2"><span class="pf">03</span><h4 class="mj">撮影・開催</h4><p>当日はおしゃべりしながら、自然な表情を撮影します。</p></li>
+    <li class="rv"><span class="pf">04</span><h4 class="mj">お届け</h4><p>撮影後◯日以内に、データでお届けします。<span class="chk">要確認</span></p></li>
+  </ol>
+</section>
+
+<section class="xs xs-faq" id="faq">
+  <div style="max-width:1100px;margin:0 auto 50px"><p class="lab rv">FAQ</p><h2 class="mj rv d1" style="font-size:clamp(28px,4vw,52px);font-weight:600;margin-top:14px">よくあるご質問</h2></div>
+  <div class="fq-list"><details class="fq rv"><summary class="mj"><span>Q</span>子どもがじっとしていられないのですが、大丈夫ですか？</summary><div class="fq-a"><span>A</span><p>大丈夫です！動き回る姿や泣き顔も、あとで見返すと宝物になります。遊びながら、その子のペースで撮影します。 <span class="chk">要確認</span></p></div></details><details class="fq rv"><summary class="mj"><span>Q</span>雨の日はどうなりますか？</summary><div class="fq-a"><span>A</span><p>雨天の場合は日程の変更、または屋内での撮影をご提案します。変更料はかかりません。 <span class="chk">要確認</span></p></div></details><details class="fq rv"><summary class="mj"><span>Q</span>写真はいつ、どのように届きますか？</summary><div class="fq-a"><span>A</span><p>撮影後◯日以内に、オンラインでダウンロードできる形でお届けします。 <span class="chk">要確認</span></p></div></details><details class="fq rv"><summary class="mj"><span>Q</span>どこまで出張してもらえますか？</summary><div class="fq-a"><span>A</span><p>流山市・柏市・松戸市など千葉県北西部が中心です。それ以外の地域もご相談ください。 <span class="chk">要確認</span></p></div></details><details class="fq rv"><summary class="mj"><span>Q</span>衣装やヘアメイクもお願いできますか？</summary><div class="fq-a"><span>A</span><p>ご希望があれば、協力してくれるヘアメイクさんや衣装レンタルのご紹介が可能です。 <span class="chk">要確認</span></p></div></details><details class="fq rv"><summary class="mj"><span>Q</span>小さなイベントでも相談できますか？</summary><div class="fq-a"><span>A</span><p>もちろんです。友人同士の集まりや10人ほどの撮影会からお手伝いします。 <span class="chk">要確認</span></p></div></details><details class="fq rv"><summary class="mj"><span>Q</span>支払い方法は？</summary><div class="fq-a"><span>A</span><p>現金・銀行振込・キャッシュレス決済などに対応予定です。 <span class="chk">要確認</span></p></div></details></div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="big rv">Say cheese.</div>
+  <h2 class="mj rv d1">次のシーンを、一緒に撮りに行きましょう。</h2>
+  <a class="cbtn pf rv d2" href="https://www.instagram.com/kekeruru0000">CONTACT</a>
+  <div class="sub-links rv d2"><a href="mailto:kstry30@gmail.com">MAIL</a><a href="https://www.instagram.com/kekeruru0000">INSTAGRAM</a></div>
+</section>
+<footer class="pf"><img class="flogo" src="img/logo-cream.png" alt="ケイエストライ"><span>© KSTRY — PHOTO &amp; EVENT</span></footer>
+
+<script>
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const flash=document.getElementById('flash');
+function shoot(){flash.classList.remove('on');void flash.offsetWidth;flash.classList.add('on')}
+let opened=0;function openC(){if(opened++)return;shoot();document.body.classList.add('open')}
+addEventListener('load',()=>setTimeout(openC,700));setTimeout(openC,3000);
+// slideshow
+const sl=[...document.querySelectorAll('.slide')];let si=0,shot=1;const meta=document.getElementById('meta');
+setInterval(()=>{sl[si].classList.remove('on');si=(si+1)%sl.length;const ph=sl[si].querySelector('.ph');ph.style.animation='none';void ph.offsetWidth;ph.style.animation='';sl[si].classList.add('on');shot++;meta.textContent=`F2.0 · 1/250 · ISO 200 · No.${String(shot).padStart(3,'0')}`},5000);
+// reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);if(e.target.querySelector('[data-to]'))count(e.target.querySelector('[data-to]'))}}),{threshold:.2});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+function count(el){const to=+el.dataset.to,t0=performance.now();(function f(t){const p=Math.min((t-t0)/1600,1);el.textContent=Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)})(t0)}
+// word light-up
+const w=document.getElementById('words');
+w.innerHTML=[...w.childNodes].map(n=>n.nodeType===3?[...n.textContent].map(c=>`<span class="w">${c}</span>`).join(''):[...n.textContent].map(c=>`<span class="w g">${c}</span>`).join('')).join('');
+const ws=[...w.querySelectorAll('.w')];
+const par=[...document.querySelectorAll('[data-speed]')];
+function onScroll(){
+  const r=w.getBoundingClientRect(),p=Math.min(Math.max((innerHeight*.85-r.top)/(r.height+innerHeight*.35),0),1);
+  const k=Math.floor(p*ws.length);ws.forEach((s,i)=>s.classList.toggle('lit',i<k));
+  if(!reduce)par.forEach(el=>{const rr=el.getBoundingClientRect();el.style.transform=`translateY(${(rr.top+rr.height/2-innerHeight/2)*el.dataset.speed}px)`});
+}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+// cursor viewfinder + click flash
+const cur=document.getElementById('cur');
+addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px'});
+document.querySelectorAll('a').forEach(a=>{a.addEventListener('mouseenter',()=>{cur.style.width=cur.style.height='70px'});a.addEventListener('mouseleave',()=>{cur.style.width=cur.style.height='46px'})});
+document.querySelector('.hero').addEventListener('click',()=>{if(!reduce)shoot()});
+</script>
+<script>
+/* img/ に画像を置くと自動で差し替わる（無ければ仮の色面のまま） */
+document.querySelectorAll('[data-img]').forEach(el=>{const ex=['jpg','png','jpeg','webp'];(function t(i){if(i>=ex.length)return;const s='img/'+el.dataset.img+'.'+ex[i],im=new Image();im.onload=()=>{el.style.setProperty('--img',`url("${s}")`);el.classList.add('has-img')};im.onerror=()=>t(i+1);im.src=s})(0)});
+</script>
+<script>
+document.querySelectorAll('.wk-tabs button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.wk-tabs button').forEach(x=>x.classList.toggle('on',x===b));const f=b.dataset.f;document.querySelectorAll('.wk').forEach(c=>{const show=f==='all'||c.dataset.cat===f;c.classList.toggle('wk-hide',!show)})}));
+</script>
+</body>
+</html>
